@@ -1,0 +1,10 @@
+Entorno
+  Node.js: v22.23.4
+  SO: Linux 6.18.44-fc-v470 x64
+  CPU: Intel(R) Xeon(R) Processor @ 2.30GHz (1 núcleos)
+  RAM total (GB): 3.9
+Parámetros
+  Iteraciones por repetición: 1000000 | repeticiones: 7 | calentamiento: 100000
+Resultados (ms por 1 000 000 de llamadas)
+  Mínimo: 9.8 | Mediana: 10.2 | Máximo: 11.2
+  Tiempo medio por llamada (ns): 10.2
