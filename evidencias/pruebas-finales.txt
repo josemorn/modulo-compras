@@ -1,0 +1,34 @@
+
+> modulo-compras@1.0.0 test
+> jest --runInBand --verbose
+
+PASS tests/compras.test.js
+  RF-01 Subtotal (precio x cantidad)
+    ✓ CP-01 partición válida: 10 x 3 sin descuento = 30 (2 ms)
+    ✓ CP-02 precio decimal: 19.99 x 2 sin descuento = 39.98
+    ✓ CP-03 precio cero es válido y produce total 0 (supuesto A-01)
+  RF-02 Descuento de 0 a 100 %
+    ✓ CP-04 partición válida: 10 % sobre 100 = 90 (1 ms)
+    ✓ CP-05 límite inferior: descuento 0 no altera el subtotal
+    ✓ CP-06 límite superior: descuento 100 produce total 0
+  RF-03 Total con dos decimales
+    ✓ CP-07 redondeo: 19.99 x 3 con 15 % = 50.97 (1 ms)
+    ✓ CP-08 el resultado nunca tiene más de dos decimales (1 ms)
+  RF-04 RangeError por valores fuera de rango
+    ✓ CP-09 precio negativo (-1) (2 ms)
+    ✓ CP-10 cantidad cero (2 ms)
+    ✓ CP-11 cantidad negativa (-2)
+    ✓ CP-12 descuento bajo el límite (-0.01)
+    ✓ CP-13 descuento sobre el límite (100.01) (1 ms)
+  RF-05 TypeError por entradas no numéricas o no finitas
+    ✓ CP-14 precio como texto numérico ("10") (1 ms)
+    ✓ CP-15 cantidad NaN (3 ms)
+    ✓ CP-16 descuento Infinity (1 ms)
+    ✓ CP-17 cantidad null
+    ✓ CP-18 descuento indefinido (parámetro omitido) (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       18 passed, 18 total
+Snapshots:   0 total
+Time:        0.36 s, estimated 1 s
+Ran all test suites.

@@ -4,6 +4,19 @@ function validarNumero(valor) {
   }
 }
 
+function redondear2(valor) {
+  return Math.round((valor + Number.EPSILON) * 100) / 100;
+}
+
+/**
+ * Calcula el total de una compra con descuento porcentual.
+ * @param {number} precio Precio unitario (>= 0).
+ * @param {number} cantidad Cantidad de unidades (> 0).
+ * @param {number} descuento Porcentaje de descuento (0 a 100).
+ * @returns {number} Total con dos decimales.
+ * @throws {TypeError} Si algún argumento no es un número finito.
+ * @throws {RangeError} Si precio, cantidad o descuento están fuera de rango.
+ */
 function calcularTotal(precio, cantidad, descuento) {
   validarNumero(precio);
   validarNumero(cantidad);
@@ -19,6 +32,7 @@ function calcularTotal(precio, cantidad, descuento) {
   }
   const subtotal = precio * cantidad;
   const valorDescuento = subtotal * descuento / 100;
-  return subtotal - valorDescuento;
+  return redondear2(subtotal - valorDescuento);
 }
+
 module.exports = { calcularTotal };
