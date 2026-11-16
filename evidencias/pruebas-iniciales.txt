@@ -1,0 +1,248 @@
+
+> modulo-compras@1.0.0 test
+> jest --runInBand --verbose
+
+FAIL tests/compras.test.js
+  RF-01 Subtotal (precio x cantidad)
+    ✓ CP-01 partición válida: 10 x 3 sin descuento = 30 (2 ms)
+    ✓ CP-02 precio decimal: 19.99 x 2 sin descuento = 39.98
+    ✓ CP-03 precio cero es válido y produce total 0 (supuesto A-01) (1 ms)
+  RF-02 Descuento de 0 a 100 %
+    ✓ CP-04 partición válida: 10 % sobre 100 = 90 (1 ms)
+    ✓ CP-05 límite inferior: descuento 0 no altera el subtotal
+    ✓ CP-06 límite superior: descuento 100 produce total 0 (1 ms)
+  RF-03 Total con dos decimales
+    ✕ CP-07 redondeo: 19.99 x 3 con 15 % = 50.97 (2 ms)
+    ✕ CP-08 el resultado nunca tiene más de dos decimales
+  RF-04 RangeError por valores fuera de rango
+    ✕ CP-09 precio negativo (-1) (1 ms)
+    ✕ CP-10 cantidad cero
+    ✕ CP-11 cantidad negativa (-2)
+    ✕ CP-12 descuento bajo el límite (-0.01) (1 ms)
+    ✕ CP-13 descuento sobre el límite (100.01) (1 ms)
+  RF-05 TypeError por entradas no numéricas o no finitas
+    ✕ CP-14 precio como texto numérico ("10")
+    ✕ CP-15 cantidad NaN
+    ✕ CP-16 descuento Infinity
+    ✕ CP-17 cantidad null
+    ✕ CP-18 descuento indefinido (parámetro omitido) (1 ms)
+
+  ● RF-03 Total con dos decimales › CP-07 redondeo: 19.99 x 3 con 15 % = 50.97
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 50.97
+    Received: 50.9745
+
+      27 | describe("RF-03 Total con dos decimales", () => {
+      28 |   test("CP-07 redondeo: 19.99 x 3 con 15 % = 50.97", () => {
+    > 29 |     expect(calcularTotal(19.99, 3, 15)).toBe(50.97);
+         |                                         ^
+      30 |   });
+      31 |   test("CP-08 el resultado nunca tiene más de dos decimales", () => {
+      32 |     const total = calcularTotal(33.33, 3, 7);
+
+      at Object.toBe (tests/compras.test.js:29:41)
+
+  ● RF-03 Total con dos decimales › CP-08 el resultado nunca tiene más de dos decimales
+
+    expect(received).toBe(expected) // Object.is equality
+
+    Expected: 92.99069999999999
+    Received: 92.99
+
+      31 |   test("CP-08 el resultado nunca tiene más de dos decimales", () => {
+      32 |     const total = calcularTotal(33.33, 3, 7);
+    > 33 |     expect(Math.round(total * 100) / 100).toBe(total);
+         |                                           ^
+      34 |   });
+      35 | });
+      36 |
+
+      at Object.toBe (tests/compras.test.js:33:43)
+
+  ● RF-04 RangeError por valores fuera de rango › CP-09 precio negativo (-1)
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: RangeError
+
+    Received function did not throw
+
+      37 | describe("RF-04 RangeError por valores fuera de rango", () => {
+      38 |   test("CP-09 precio negativo (-1)", () => {
+    > 39 |     expect(() => calcularTotal(-1, 1, 0)).toThrow(RangeError);
+         |                                           ^
+      40 |   });
+      41 |   test("CP-10 cantidad cero", () => {
+      42 |     expect(() => calcularTotal(10, 0, 0)).toThrow(RangeError);
+
+      at Object.toThrow (tests/compras.test.js:39:43)
+
+  ● RF-04 RangeError por valores fuera de rango › CP-10 cantidad cero
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: RangeError
+
+    Received function did not throw
+
+      40 |   });
+      41 |   test("CP-10 cantidad cero", () => {
+    > 42 |     expect(() => calcularTotal(10, 0, 0)).toThrow(RangeError);
+         |                                           ^
+      43 |   });
+      44 |   test("CP-11 cantidad negativa (-2)", () => {
+      45 |     expect(() => calcularTotal(10, -2, 0)).toThrow(RangeError);
+
+      at Object.toThrow (tests/compras.test.js:42:43)
+
+  ● RF-04 RangeError por valores fuera de rango › CP-11 cantidad negativa (-2)
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: RangeError
+
+    Received function did not throw
+
+      43 |   });
+      44 |   test("CP-11 cantidad negativa (-2)", () => {
+    > 45 |     expect(() => calcularTotal(10, -2, 0)).toThrow(RangeError);
+         |                                            ^
+      46 |   });
+      47 |   test("CP-12 descuento bajo el límite (-0.01)", () => {
+      48 |     expect(() => calcularTotal(10, 1, -0.01)).toThrow(RangeError);
+
+      at Object.toThrow (tests/compras.test.js:45:44)
+
+  ● RF-04 RangeError por valores fuera de rango › CP-12 descuento bajo el límite (-0.01)
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: RangeError
+
+    Received function did not throw
+
+      46 |   });
+      47 |   test("CP-12 descuento bajo el límite (-0.01)", () => {
+    > 48 |     expect(() => calcularTotal(10, 1, -0.01)).toThrow(RangeError);
+         |                                               ^
+      49 |   });
+      50 |   test("CP-13 descuento sobre el límite (100.01)", () => {
+      51 |     expect(() => calcularTotal(10, 1, 100.01)).toThrow(RangeError);
+
+      at Object.toThrow (tests/compras.test.js:48:47)
+
+  ● RF-04 RangeError por valores fuera de rango › CP-13 descuento sobre el límite (100.01)
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: RangeError
+
+    Received function did not throw
+
+      49 |   });
+      50 |   test("CP-13 descuento sobre el límite (100.01)", () => {
+    > 51 |     expect(() => calcularTotal(10, 1, 100.01)).toThrow(RangeError);
+         |                                                ^
+      52 |   });
+      53 | });
+      54 |
+
+      at Object.toThrow (tests/compras.test.js:51:48)
+
+  ● RF-05 TypeError por entradas no numéricas o no finitas › CP-14 precio como texto numérico ("10")
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: TypeError
+
+    Received function did not throw
+
+      55 | describe("RF-05 TypeError por entradas no numéricas o no finitas", () => {
+      56 |   test("CP-14 precio como texto numérico (\"10\")", () => {
+    > 57 |     expect(() => calcularTotal("10", 2, 0)).toThrow(TypeError);
+         |                                             ^
+      58 |   });
+      59 |   test("CP-15 cantidad NaN", () => {
+      60 |     expect(() => calcularTotal(10, NaN, 0)).toThrow(TypeError);
+
+      at Object.toThrow (tests/compras.test.js:57:45)
+
+  ● RF-05 TypeError por entradas no numéricas o no finitas › CP-15 cantidad NaN
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: TypeError
+
+    Received function did not throw
+
+      58 |   });
+      59 |   test("CP-15 cantidad NaN", () => {
+    > 60 |     expect(() => calcularTotal(10, NaN, 0)).toThrow(TypeError);
+         |                                             ^
+      61 |   });
+      62 |   test("CP-16 descuento Infinity", () => {
+      63 |     expect(() => calcularTotal(10, 1, Infinity)).toThrow(TypeError);
+
+      at Object.toThrow (tests/compras.test.js:60:45)
+
+  ● RF-05 TypeError por entradas no numéricas o no finitas › CP-16 descuento Infinity
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: TypeError
+
+    Received function did not throw
+
+      61 |   });
+      62 |   test("CP-16 descuento Infinity", () => {
+    > 63 |     expect(() => calcularTotal(10, 1, Infinity)).toThrow(TypeError);
+         |                                                  ^
+      64 |   });
+      65 |   test("CP-17 cantidad null", () => {
+      66 |     expect(() => calcularTotal(10, null, 0)).toThrow(TypeError);
+
+      at Object.toThrow (tests/compras.test.js:63:50)
+
+  ● RF-05 TypeError por entradas no numéricas o no finitas › CP-17 cantidad null
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: TypeError
+
+    Received function did not throw
+
+      64 |   });
+      65 |   test("CP-17 cantidad null", () => {
+    > 66 |     expect(() => calcularTotal(10, null, 0)).toThrow(TypeError);
+         |                                              ^
+      67 |   });
+      68 |   test("CP-18 descuento indefinido (parámetro omitido)", () => {
+      69 |     expect(() => calcularTotal(10, 1)).toThrow(TypeError);
+
+      at Object.toThrow (tests/compras.test.js:66:46)
+
+  ● RF-05 TypeError por entradas no numéricas o no finitas › CP-18 descuento indefinido (parámetro omitido)
+
+    expect(received).toThrow(expected)
+
+    Expected constructor: TypeError
+
+    Received function did not throw
+
+      67 |   });
+      68 |   test("CP-18 descuento indefinido (parámetro omitido)", () => {
+    > 69 |     expect(() => calcularTotal(10, 1)).toThrow(TypeError);
+         |                                        ^
+      70 |   });
+      71 | });
+      72 |
+
+      at Object.toThrow (tests/compras.test.js:69:40)
+
+Test Suites: 1 failed, 1 total
+Tests:       12 failed, 6 passed, 18 total
+Snapshots:   0 total
+Time:        0.387 s, estimated 1 s
+Ran all test suites.

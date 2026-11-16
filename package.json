@@ -1,0 +1,27 @@
+{
+  "name": "modulo-compras",
+  "version": "1.0.0",
+  "description": "Laboratorio de pruebas dinámicas con Jest (VVS, Unidad 2)",
+  "main": "src/compras.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest --runInBand",
+    "test:coverage": "jest --runInBand --coverage",
+    "perf": "node scripts/rendimiento.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^30.5.2"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ]
+  }
+}
