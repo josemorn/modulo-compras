@@ -42,3 +42,24 @@ Tests:       12 failed, 6 passed, 18 total
     ✓ CP-18 descuento indefinido (parámetro omitido)
 Tests:       7 failed, 11 passed, 18 total
 
+=== Tras corregir D-02 (rangos) ===
+    ✓ CP-01 partición válida: 10 x 3 sin descuento = 30 (2 ms)
+    ✓ CP-02 precio decimal: 19.99 x 2 sin descuento = 39.98 (1 ms)
+    ✓ CP-03 precio cero es válido y produce total 0 (supuesto A-01)
+    ✓ CP-04 partición válida: 10 % sobre 100 = 90
+    ✓ CP-05 límite inferior: descuento 0 no altera el subtotal (1 ms)
+    ✓ CP-06 límite superior: descuento 100 produce total 0
+    ✕ CP-07 redondeo: 19.99 x 3 con 15 % = 50.97 (2 ms)
+    ✕ CP-08 el resultado nunca tiene más de dos decimales
+    ✓ CP-09 precio negativo (-1) (3 ms)
+    ✓ CP-10 cantidad cero
+    ✓ CP-11 cantidad negativa (-2)
+    ✓ CP-12 descuento bajo el límite (-0.01) (1 ms)
+    ✓ CP-13 descuento sobre el límite (100.01) (1 ms)
+    ✓ CP-14 precio como texto numérico ("10") (1 ms)
+    ✓ CP-15 cantidad NaN
+    ✓ CP-16 descuento Infinity (1 ms)
+    ✓ CP-17 cantidad null (1 ms)
+    ✓ CP-18 descuento indefinido (parámetro omitido) (1 ms)
+Tests:       2 failed, 16 passed, 18 total
+
