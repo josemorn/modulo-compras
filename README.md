@@ -1,4 +1,4 @@
-# Módulo de cálculo de compras – Pruebas dinámicas (VVS, Unidad 2)
+# Módulo de cálculo de compras – Pruebas dinámicas 
 
 Laboratorio de evaluación dinámica: diseño de casos, automatización con Jest y gestión de defectos sobre `calcularTotal(precio, cantidad, descuento)`.
 
@@ -16,9 +16,9 @@ scripts/        rendimiento.js (medición exploratoria)
 
 ```bash
 npm install
-npm test               # jest --runInBand
-npm run test:coverage  # con cobertura
-npm run perf           # medición exploratoria (RNF-01)
+npm test               
+npm run test:coverage  
+npm run perf           
 ```
 
 Requiere Node.js 18 o superior.

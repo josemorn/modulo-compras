@@ -1,4 +1,4 @@
-// Medición exploratoria de rendimiento (RNF-01). No es una prueba de carga formal.
+
 const os = require("os");
 const { performance } = require("perf_hooks");
 const { calcularTotal } = require("../src/compras");
@@ -12,7 +12,7 @@ function ejecutar(n) {
   for (let i = 0; i < n; i++) {
     acumulado += calcularTotal(19.99 + (i % 50), 1 + (i % 9), i % 101);
   }
-  return acumulado; // se usa para que el motor no elimine el bucle
+  return acumulado; 
 }
 
 ejecutar(CALENTAMIENTO);
